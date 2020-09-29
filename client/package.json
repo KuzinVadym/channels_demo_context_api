@@ -1,7 +1,7 @@
 {
   "name": "channels_demo_client",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "src/index.tsx",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --port 3000 --hot"
@@ -20,6 +20,7 @@
     "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
+    "@babel/plugin-transform-runtime": "^7.11.5",
     "@babel/preset-env": "^7.11.0",
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",

@@ -1,5 +1,6 @@
 import express, {Express, Router} from "express";
 import * as bodyParser from "body-parser";
+import cors from "cors";
 
 import {Logger} from "pino";
 import ISettings from "./interfaces/ISettings";
@@ -22,6 +23,8 @@ export default class AppServer {
         this.app.use(bodyParser.json({limit: '50mb'}));
         this.app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
         this.app.use(bodyParser.urlencoded({ extended: true }));
+
+        this.app.use(cors())
     }
 
     // listen server

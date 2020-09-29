@@ -1,24 +1,19 @@
-import React, { createContext, useReducer, Dispatch } from 'react';
+import React, {createContext, useContext, useReducer} from 'react';
+import {getInitialState, reducer} from './reducer'
+import createActions from "./actions";
+import { IActions, IState } from "../interfaces";
 
-type ChannelType = {
-    id: number;
-    name: string;
-}
+type IContext = [IState, IActions] | [];
 
-type InitialStateType = {
-    channels: ChannelType[];
-}
-
-const initialState: InitialStateType = {
-    channels: []
-};
-
-const AppContext = createContext<{ state: InitialStateType }>({ state: initialState });
+const AppContext = createContext<IContext>([]);
 
 const AppProvider: React.FC = ({ children }) => {
-    const [appState, setAppState] = React.useState(initialState);
+
+    const [state, dispatch] = useReducer(reducer, getInitialState());
+    const actions = createActions(dispatch);
+
     return (
-        <AppContext.Provider value={{state: appState}}>
+        <AppContext.Provider value={[state, actions]}>
             {children}
         </AppContext.Provider>
     )
