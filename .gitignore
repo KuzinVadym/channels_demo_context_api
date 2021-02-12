@@ -1,1 +1,17 @@
-node_modules
+#deps
+client/node_modules
+server/node_modules
+server/.env
+server/credentials.csv
+
+#logs & lock
+client/yarn.lock
+client/yarn-error.log
+server/yarn.lock
+server/yarn-error.log
+
+**/**/.idea
+.project
+.classpath
+.c9/
+.settings/
