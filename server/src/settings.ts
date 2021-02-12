@@ -1,5 +1,5 @@
-import ISettings from "./interfaces/ISettings";
+import { ISettings } from './interfaces/infrastructural';
 
 export const settings: ISettings = {
-    port: 3333,
+  port: 3333
 };

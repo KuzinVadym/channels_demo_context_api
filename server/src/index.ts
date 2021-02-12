@@ -1,23 +1,26 @@
 import pino from 'pino';
 
 import { settings } from './settings';
-import routes from './routes';
+import { mainRoutes } from './api/http/routes';
 // import resolvers from './resolvers/rest';
-import AppServer from './service';
+import { RootService } from './rootService';
+import { createHttpServices } from './domains';
 
 const logger = pino();
 
 try {
-    const appSrv = new AppServer(settings, logger);
-    logger.info('Starting HTTP server');
+  const appSrv = new RootService(settings, logger);
+  logger.info('Starting HTTP server');
 
-    // Create Koa application server (app)
-    appSrv.init();
+  // Create Koa application server (app)
+  appSrv.init();
 
-    // Calling hook for setting rest routers
-    appSrv.withRest(routes);
+  appSrv.withHttpServices(createHttpServices());
 
-    appSrv.listen();
+  // Calling hook for setting rest routers
+  appSrv.withRest(mainRoutes);
+
+  appSrv.listen();
 } catch (e) {
-    logger.error(e, 'An error occurred while initializing application.');
+  logger.error(e, 'An error occurred while initializing application.');
 }
